@@ -1,0 +1,7 @@
+<Mod
+	name="Spell Push"
+	description="Dropping a spell onto an occupied wand slot inserts it and pushes the other spells over, instead of swapping the two. Hold Left Alt to use the original swap behavior. The mod settings let you flip which behaviour holding Left Alt activates."
+	request_no_api_restrictions="0"
+	tags="quality of life"
+>
+</Mod>

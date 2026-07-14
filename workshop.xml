@@ -1,0 +1,24 @@
+<Mod
+	name="Spell Push"
+	description="By default, Noita swaps two spells whenever you drop one onto an occupied slot. Spell Push replaces that with insert-and-push: the spell you're dragging takes the target slot, and whatever was there slides over to make room instead of trading places with it.
+
+Holding Left Alt while dropping a spell reverts to Noita's default drag-and-drop behaviour. This can be inverted in the mod settings menu to make default noita behaviour the norm, and activate the mod with left alt instead.
+
+If there's an open slot to the right of where you dropped, everything between moves right by one.
+If there's no room to the right but there is to the left, everything moves left instead.
+If the wand is completely full and the spell came from somewhere else (your inventory, another wand), it falls back to a normal swap.
+Rearranging spells within the same wand always works, even on a full wand — the slot you dragged from becomes the opening.
+
+Example:
+
+A full 3-slot wand holding [A, B, C]. Drag C onto slot 1, and instead of swapping A and C, you get [C, A, B] — everything just moves over by one.
+
+What it doesn't touch
+
+The spell inventory keeps vanilla swap behaviour — this mod only changes how wand slots respond to drops.
+
+The mod is mouse-only for now (no controller support). It works by adjusting existing drag-and-drop behaviour."
+	request_no_api_restrictions="0"
+	tags="quality of life"
+>
+</Mod>
