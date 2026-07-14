@@ -25,10 +25,10 @@ local function resolve_drag_identity_from_mouse(baseline, spell_one, spell_two, 
 		mouse_delta = release_y - press_y
 	end
 
-	SpellShift.debug_log(string.format("mouse heuristic: rank_one=%s rank_two=%s mouse_delta=%.1f",
+	SpellPush.debug_log(string.format("mouse heuristic: rank_one=%s rank_two=%s mouse_delta=%.1f",
 		tostring(rank_one), tostring(rank_two), mouse_delta))
 
-	if math.abs(mouse_delta) < SpellShift.MIN_DRAG_DISTANCE_PIXELS then
+	if math.abs(mouse_delta) < SpellPush.MIN_DRAG_DISTANCE_PIXELS then
 		return nil
 	end
 
@@ -46,7 +46,7 @@ end
 -- onto the other" and identifies which one was dragged, using the mouse's
 -- drag direction. If that's inconclusive, the caller keeps the vanilla swap
 -- rather than guess.
-function SpellShift.classify_swap(baseline, current_snapshot, moved, appeared, disappeared, press_x, press_y, release_x, release_y)
+function SpellPush.classify_swap(baseline, current_snapshot, moved, appeared, disappeared, press_x, press_y, release_x, release_y)
 	if #appeared > 0 or #disappeared > 0 or #moved ~= 2 then
 		return nil
 	end

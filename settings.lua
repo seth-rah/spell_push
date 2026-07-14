@@ -1,6 +1,6 @@
 dofile("data/scripts/lib/mod_settings.lua")
 
-local mod_id = "spell_shift"
+local mod_id = "spell_push"
 mod_settings_version = 1
 mod_settings = {
 	{
@@ -17,9 +17,7 @@ Choose which one holding Left Alt activates below.
 		ui_name = "Left alt behaviour",
 		value_default = "vanilla",
 		values = {
-			-- Display text only -- the stored value stays "spell_shift" so an
-			-- existing local preference isn't silently reset by the rename.
-			{ "spell_shift", "Hold for spell push" },
+			{ "spell_push", "Hold for spell push" },
 			{ "vanilla", "Hold for vanilla Noita behaviour" },
 		},
 		scope = MOD_SETTING_SCOPE_RUNTIME,

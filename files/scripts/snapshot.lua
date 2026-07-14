@@ -1,4 +1,4 @@
-function SpellShift.get_player()
+function SpellPush.get_player()
 	local players = EntityGetWithTag("player_unit")
 	return players and players[1]
 end
@@ -12,30 +12,25 @@ local function find_child_named(entity, name)
 	return nil
 end
 
-local function get_item_component(spell)
+function SpellPush.get_item_component(spell)
 	return EntityGetFirstComponentIncludingDisabled(spell, "ItemComponent")
 end
 
 -- A spell is any entity with both an ItemComponent and an ItemActionComponent.
 local function is_spell(entity)
-	local item_component = get_item_component(entity)
+	local item_component = SpellPush.get_item_component(entity)
 	local action_component = EntityGetFirstComponentIncludingDisabled(entity, "ItemActionComponent")
 	return item_component ~= nil and action_component ~= nil
 end
 
-function SpellShift.is_frozen(spell)
-	local item_component = get_item_component(spell)
-	return item_component ~= nil and ComponentGetValue2(item_component, "is_frozen") == true
-end
-
 local function slot_index_of(spell)
-	local item_component = get_item_component(spell)
+	local item_component = SpellPush.get_item_component(spell)
 	local x = ComponentGetValue2(item_component, "inventory_slot")
 	return x
 end
 
-function SpellShift.set_slot_index(spell, slot_index)
-	local item_component = get_item_component(spell)
+function SpellPush.set_slot_index(spell, slot_index)
+	local item_component = SpellPush.get_item_component(spell)
 	ComponentSetValue2(item_component, "inventory_slot", slot_index, 0)
 end
 
@@ -44,7 +39,7 @@ end
 local function snapshot_wand(wand)
 	local spells_by_slot = {}
 	for _, child in ipairs(EntityGetAllChildren(wand) or {}) do
-		local item_component = get_item_component(child)
+		local item_component = SpellPush.get_item_component(child)
 		if item_component and is_spell(child) and not ComponentGetValue2(item_component, "permanently_attached") then
 			spells_by_slot[slot_index_of(child)] = child
 		end
@@ -62,7 +57,7 @@ end
 -- spell bag row is drawn above all of them). This lets a cross-container
 -- drag be compared on a single axis, the same way slot_index compares
 -- positions within one wand.
-function SpellShift.take_snapshot(player)
+function SpellPush.take_snapshot(player)
 	local snapshot = { wands = {}, spell_locations = {}, container_rank = {} }
 	local next_container_rank = 0
 
@@ -98,7 +93,7 @@ end
 
 -- Compares two snapshots by spell identity and returns which spells moved to
 -- a different container/slot, which are new, and which are gone.
-function SpellShift.diff_snapshots(before, after)
+function SpellPush.diff_snapshots(before, after)
 	local moved, disappeared = {}, {}
 	for spell, before_location in pairs(before.spell_locations) do
 		local after_location = after.spell_locations[spell]
